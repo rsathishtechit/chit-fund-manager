@@ -7,18 +7,23 @@ function SignUp() {
       <Container>
         <FormControl>
           <FormLabel>Email</FormLabel>
-          <Input type="email" placeholder="Enter the Email" />
+          <Input type="email" placeholder="Enter the email" />
         </FormControl>
         <FormControl>
           <FormLabel>Password</FormLabel>
           <Input type="password" placeholder="Enter the password" />
         </FormControl>
+        <FormControl></FormControl>
         <FormControl>
-          <FormLabel>ConfirmPassword</FormLabel>
-          <Input type="Password" placeholder="Enter the ConfirmPassword" />
+          <FormLabel>New password</FormLabel>
+          <Input type="password" placeholder="Enter the Newpassword" />
+        </FormControl>
+        <FormControl>
+          <FormLabel>Confirm Newpassword</FormLabel>
+          <Input type="Password" placeholder="Enter the Confirm NewPassword" />
         </FormControl>
         <br />
-        <Button>SignUp</Button>
+        <Button colorScheme="blue">Sign In</Button>
       </Container>
     </Flex>
   );

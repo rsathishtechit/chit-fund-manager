@@ -15,16 +15,16 @@ function Member() {
       <Flex direction="column" pt={{ base: "120px", md: "75px" }}>
         <Container>
           <FormControl>
-            <FormLabel>Mobile</FormLabel>
-            <Input type="number" placeholder="Enter the Mobile" />
+            <FormLabel>Mobile number</FormLabel>
+            <Input type="number" placeholder="9876543210" />
           </FormControl>
           <FormControl>
             <FormLabel>Name</FormLabel>
             <Input type="text" placeholder="Enter the Name" />
           </FormControl>
-          <FormLabel>Description</FormLabel>
-          <Textarea placeholder="Here is a sample placeholder" />
           <FormControl>
+            <FormLabel>Description</FormLabel>
+            <Textarea placeholder="Here is a sample placeholder" />
             <FormLabel>Payment</FormLabel>
             <Select placeholder="Select option">
               <option value="option1">Option 1</option>

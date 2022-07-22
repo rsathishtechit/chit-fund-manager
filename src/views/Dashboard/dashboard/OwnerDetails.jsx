@@ -12,16 +12,16 @@ function Chit() {
           <Input type="text" placeholder=" Enter the Name" />
         </FormControl>
         <FormControl>
-          <FormLabel>OrgName</FormLabel>
-          <Input type="text" placeholder="Enter the OrgName" />
+          <FormLabel>Organization name</FormLabel>
+          <Input type="text" placeholder="Enter the Organization name" />
         </FormControl>
         <FormControl>
-          <FormLabel>MObile</FormLabel>
-          <Input type="number" placeholder="Enter the Number" />
+          <FormLabel>Mobile</FormLabel>
+          <Input type="number" placeholder="9876543210" />
         </FormControl>
         <FormControl>
           <FormLabel>Email</FormLabel>
-          <Input type="email" placeholder="Enter the Email" />
+          <Input type="email" placeholder="chits@gmail.com" />
         </FormControl>
         <br />
         <Button colorScheme="blue">SingIn</Button>

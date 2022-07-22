@@ -1,16 +1,8 @@
-// import
-// import Dashboard from "views/Dashboard/Dashboard";
-// import Tables from "views/Dashboard/Tables";
-// import Billing from "views/Dashboard/Billing";
-// import RTLPage from "views/Dashboard/RTL";
-import Profile from "views/Dashboard/Profile";
-import Chit from "views/Dashboard/Chit/OwnerDetails";
-import SignUp from "views/Dashboard/SignUp/SignUp";
-import Chitsdetails from "views/Dashboard/Details/Chitsdetails";
-import ChitsList from "views/Dashboard/List/ChitsList";
-import Member from "views/Dashboard/MemberList/Member";
-// import SignIn from "views/Auth/SignIn.js";
-// import SignUp from "views/Auth/SignUp.js";
+import Chit from "views/Dashboard/dashboard/OwnerDetails";
+import SignUp from "views/Dashboard/chits/SignUp";
+import Chitsdetails from "views/Dashboard/details/Chitsdetails";
+import ChitsList from "views/Dashboard/list/ChitsList";
+import Member from "views/Dashboard/memberlist/Member";
 
 import {
   HomeIcon,
@@ -28,16 +20,16 @@ var dashRoutes = [
     name: "Dashboard",
     rtlName: "لوحة القيادة",
     icon: <HomeIcon color="inherit" />,
-    secondaryNavbar: true,
+    secondaryNavbar: false,
     component: Chit,
     layout: "/admin",
   },
   {
     path: "/SignUp",
-    name: "SignUp",
+    name: "Chits",
     rtlName: "لوحة القيادة",
     icon: <RocketIcon color="inherit" />,
-    secondaryNavbar: true,
+    secondaryNavbar: false,
     component: SignUp,
     layout: "/admin",
   },
@@ -53,7 +45,7 @@ var dashRoutes = [
     path: "/ChitsList",
     name: "List",
     rtlName: "لوحة القيادة",
-    icon: <StatsIcon color="inherit" />,
+    icon: <HomeIcon color="inherit" />,
     component: ChitsList,
     layout: "/admin",
   },
@@ -65,24 +57,6 @@ var dashRoutes = [
     icon: <PersonIcon color="inherit" />,
     component: Member,
     layout: "/admin",
-  },
-
-  {
-    name: "ACCOUNT PAGES",
-    category: "account",
-    rtlName: "صفحات",
-    state: "pageCollapse",
-    views: [
-      {
-        path: "/profile",
-        name: "Profile",
-        rtlName: "لوحة القيادة",
-        icon: <PersonIcon color="inherit" />,
-        secondaryNavbar: true,
-        component: Profile,
-        layout: "/admin",
-      },
-    ],
   },
 ];
 export default dashRoutes;

@@ -1,7 +1,5 @@
-// Chakra imports
 import { Flex } from "@chakra-ui/react";
 import React from "react";
-
 import {
   FormControl,
   FormLabel,
@@ -24,34 +22,28 @@ function Chit() {
     <Flex direction="column" pt={{ base: "120px", md: "75px" }}>
       <Container>
         <FormControl>
-          <FormLabel>ChitName</FormLabel>
-          <Input type="text" placeHolder="Enter the ChitName" />
+          <FormLabel>Chit name</FormLabel>
+          <Input type="text" placeHolder="Enter the Chit name" />
         </FormControl>
         <FormControl>
-          <FormLabel>ChitType</FormLabel>
-          <Select
-            placeHolder="Select option"
-            backgroundColor="gray.800"
-            textColor="GrayText"
-          >
+          <FormLabel>Chit type</FormLabel>
+          <Select placeHolder="Select option">
             <option value="/">--type--</option>
             <option value="option1">Monthly</option>
             <option value="option2">2-Monthly once</option>
             <option value="option3">3-monthly once</option>
           </Select>
         </FormControl>
-        <FormLabel>StartDate</FormLabel>
+        <FormLabel>Start date</FormLabel>
         <Input
           placeHolder="Select Date and Time"
           size="md"
-          backgroundColor="gray.800"
           type="datetime-local"
-          textColor="GrayText"
         />
 
-        <FormLabel>No of Chits</FormLabel>
+        <FormLabel>No of chits</FormLabel>
         <NumberInput>
-          <NumberInputField placeHolder="Number of Chits" />
+          <NumberInputField placeHolder="Number of chits" />
           <NumberInputStepper>
             <NumberIncrementStepper />
             <NumberDecrementStepper />
@@ -62,20 +54,18 @@ function Chit() {
           <Input
             placeHolder="Select Date and Time"
             size="md"
-            backgroundColor="gray.800"
             type="datetime-local"
-            textColor="GrayText"
           />
         </FormControl>
-        <FormLabel>TotalAmount</FormLabel>
+        <FormLabel>Total amount</FormLabel>
         <NumberInput>
-          <NumberInputField placeHolder="Number of TotalAmount" />
+          <NumberInputField placeHolder="Number of Total amount" />
           <NumberInputStepper>
             <NumberIncrementStepper />
             <NumberDecrementStepper />
           </NumberInputStepper>
         </NumberInput>
-        <FormLabel>ExtraChit</FormLabel>
+        <FormLabel>Extra chits</FormLabel>
         <Switch id="email-alerts" />
         <FormControl>
           <FormLabel>Amount</FormLabel>
