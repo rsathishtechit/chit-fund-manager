@@ -16,10 +16,10 @@ import { db } from "../../../firebase";
 import { collection, addDoc } from "firebase/firestore";
 function Member() {
   const validationSchema = Yup.object().shape({
-    mobilenumber: Yup.string().required(" mobilenumber is required"),
-    name: Yup.string().required("name is required"),
-    description: Yup.string().required("description is required"),
-    payment: Yup.string().required("payment is requied"),
+    mobilenumber: Yup.string().required(" Mobilenumber is required"),
+    name: Yup.string().required("Name is required"),
+    description: Yup.string().required("Description is required"),
+    payment: Yup.string().required("Payment is requied"),
   });
 
   const {
