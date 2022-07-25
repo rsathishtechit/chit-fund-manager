@@ -17,8 +17,8 @@ import { collection, addDoc } from "firebase/firestore";
 function Member() {
   const validationSchema = Yup.object().shape({
     mobilenumber: Yup.string().required(" mobilenumber is required"),
-    name: Yup.string().required("Name is required"),
-    description: Yup.string().required("Description is required"),
+    name: Yup.string().required("name is required"),
+    description: Yup.string().required("description is required"),
     payment: Yup.string().required("payment is requied"),
   });
 
@@ -80,20 +80,18 @@ function Member() {
             />
             <div className="invalid-feedback">{errors.name?.message}</div>
           </FormControl>
+
+          <FormLabel>Description</FormLabel>
+          <Textarea
+            {...register("description")}
+            className={`form-control ${errors.description ? "is-invalid" : ""}`}
+            onChange={(e) => {
+              setdescription(e.target.value);
+            }}
+          />
+          <div className="invalid-feedback">{errors.description?.message}</div>
+
           <FormControl>
-            <FormLabel>Description</FormLabel>
-            <Textarea
-              {...register("descrption")}
-              className={`form-control ${
-                errors.description ? "is-invalid" : ""
-              }`}
-              onChange={(e) => {
-                setdescription(e.target.value);
-              }}
-            />
-            <div className="invalid-feedback">
-              {errors.description?.message}
-            </div>
             <FormLabel>Payment</FormLabel>
             <Select
               {...register("payment")}

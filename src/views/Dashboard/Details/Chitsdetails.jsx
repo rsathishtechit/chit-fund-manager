@@ -101,7 +101,7 @@ function Chit() {
                   <FormLabel>Name</FormLabel>
                   <Input
                     type="text"
-                    placeholder="Name"
+                    placeHolder="Name"
                     {...register("name")}
                     className={`form-control ${
                       errors.name ? "is-invalid" : ""
@@ -209,7 +209,20 @@ function Chit() {
                 <Switch id="email-alerts" />
                 <FormControl>
                   <FormLabel>Amount</FormLabel>
-                  <Input type="Number" placeHolder="Enter the Amount" />
+                  <Input
+                    type="Number"
+                    placeHolder="Enter the Amount"
+                    {...register("amount")}
+                    className={`form-control ${
+                      errors.amount ? "is-invalid" : ""
+                    } `}
+                    onChange={(e) => {
+                      setamount(e.target.value);
+                    }}
+                  />
+                  <div className="invalid-feedback">
+                    {errors.amount?.message}
+                  </div>
                 </FormControl>
               </ModalBody>
               <ModalFooter>
