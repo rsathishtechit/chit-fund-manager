@@ -14,8 +14,10 @@
     "@fontsource/open-sans": "^4.5.0",
     "@fontsource/raleway": "^4.5.0",
     "@fontsource/roboto": "^4.5.0",
+    "@hookform/resolvers": "^2.9.6",
     "apexcharts": "^3.27.3",
     "classnames": "2.3.1",
+    "firebase": "^9.9.1",
     "framer-motion": "^4.1.17",
     "match-sorter": "6.3.0",
     "moment": "2.29.1",
@@ -28,6 +30,7 @@
     "react-datetime": "3.1.1",
     "react-dom": "16.14.0",
     "react-github-btn": "^1.2.1",
+    "react-hook-form": "^7.33.1",
     "react-icons": "^4.2.0",
     "react-jvectormap": "0.0.16",
     "react-router-dom": "5.2.1",
@@ -36,7 +39,8 @@
     "react-table": "7.7.0",
     "react-tagsinput": "3.19.0",
     "stylis": "^4.0.13",
-    "stylis-plugin-rtl": "^2.1.1"
+    "stylis-plugin-rtl": "^2.1.1",
+    "yup": "^0.32.11"
   },
   "resolutions": {
     "react-error-overlay": "6.0.9"

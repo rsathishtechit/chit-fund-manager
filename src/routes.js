@@ -1,8 +1,7 @@
-import Chit from "views/Dashboard/dashboard/OwnerDetails";
-import SignUp from "views/Dashboard/chits/SignUp";
-import Chitsdetails from "views/Dashboard/details/Chitsdetails";
-import ChitsList from "views/Dashboard/list/ChitsList";
-import Member from "views/Dashboard/memberlist/Member";
+import Chit from "views/Dashboard/dashboard/ownerDetails";
+import SignUp from "views/Dashboard/chits/signUp";
+import Chitsdetails from "views/Dashboard/details/chitsdetails";
+import Member from "views/Dashboard/memberlist/member";
 
 import {
   HomeIcon,
@@ -16,11 +15,10 @@ import {
 
 var dashRoutes = [
   {
-    path: "/chit",
+    path: "/Chit",
     name: "Dashboard",
     rtlName: "لوحة القيادة",
     icon: <HomeIcon color="inherit" />,
-    secondaryNavbar: false,
     component: Chit,
     layout: "/admin",
   },
@@ -29,7 +27,6 @@ var dashRoutes = [
     name: "Chits",
     rtlName: "لوحة القيادة",
     icon: <RocketIcon color="inherit" />,
-    secondaryNavbar: false,
     component: SignUp,
     layout: "/admin",
   },
@@ -41,15 +38,6 @@ var dashRoutes = [
     component: Chitsdetails,
     layout: "/admin",
   },
-  {
-    path: "/ChitsList",
-    name: "List",
-    rtlName: "لوحة القيادة",
-    icon: <HomeIcon color="inherit" />,
-    component: ChitsList,
-    layout: "/admin",
-  },
-
   {
     path: "/Member",
     name: "MemberList",

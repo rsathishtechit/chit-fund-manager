@@ -1,5 +1,11 @@
 import { Flex } from "@chakra-ui/react";
-import React from "react";
+import { Text } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+import { db } from "../../../firebase";
+import { collection, addDoc, getDoc } from "firebase/firestore";
 import {
   FormControl,
   FormLabel,
@@ -10,71 +16,235 @@ import {
   Switch,
 } from "@chakra-ui/react";
 import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+} from "@chakra-ui/react";
+import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
 } from "@chakra-ui/react";
-
+import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 function Chit() {
-  return (
-    <Flex direction="column" pt={{ base: "120px", md: "75px" }}>
-      <Container>
-        <FormControl>
-          <FormLabel>Chit name</FormLabel>
-          <Input type="text" placeHolder="Enter the Chit name" />
-        </FormControl>
-        <FormControl>
-          <FormLabel>Chit type</FormLabel>
-          <Select placeHolder="Select option">
-            <option value="/">--type--</option>
-            <option value="option1">Monthly</option>
-            <option value="option2">2-Monthly once</option>
-            <option value="option3">3-monthly once</option>
-          </Select>
-        </FormControl>
-        <FormLabel>Start date</FormLabel>
-        <Input
-          placeHolder="Select Date and Time"
-          size="md"
-          type="datetime-local"
-        />
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required(" Name is required"),
+    chittype: Yup.string().required("Chittype is required"),
+    startdate: Yup.string().required("Startdate is required"),
+    confirmnewpassword: Yup.string(),
+    noofchits: Yup.string("No of chits is required"),
+    occuresin: Yup.string("Occuresion is required"),
+    totalamount: Yup.string("Totalamount is required"),
+  });
 
-        <FormLabel>No of chits</FormLabel>
-        <NumberInput>
-          <NumberInputField placeHolder="Number of chits" />
-          <NumberInputStepper>
-            <NumberIncrementStepper />
-            <NumberDecrementStepper />
-          </NumberInputStepper>
-        </NumberInput>
-        <FormControl>
-          <FormLabel>Occures in</FormLabel>
-          <Input
-            placeHolder="Select Date and Time"
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
+
+  const [name, setname] = useState("");
+  const [chittype, setchittype] = useState("");
+  const [startdate, setstartdate] = useState("");
+  const [noofchits, setnoofchits] = useState("");
+  const [occcuresin, setoccuresin] = useState("");
+  const [totalamount, settotalamount] = useState("");
+
+  const usersCollectionRef = collection(db, "chitsdatails");
+
+  const onSubmit = async (data) => {
+    await addDoc(usersCollectionRef, {
+      name: name,
+      chittype: chittype,
+      startdate: startdate,
+      noofchits: noofchits,
+      occcuresin: occcuresin,
+      totalamount: totalamount,
+    });
+    console.log(JSON.stringify(data, null, 2));
+  };
+  const { isOpen, onClose, onOpen } = useDisclosure();
+
+  return (
+    <form onSubmit={handleSubmit(onsubmit)}>
+      <Container>
+        <Flex direction="column" pt={{ base: "120px", md: "75px" }}>
+          <Button
+            onClick={onOpen}
             size="md"
-            type="datetime-local"
-          />
-        </FormControl>
-        <FormLabel>Total amount</FormLabel>
-        <NumberInput>
-          <NumberInputField placeHolder="Number of Total amount" />
-          <NumberInputStepper>
-            <NumberIncrementStepper />
-            <NumberDecrementStepper />
-          </NumberInputStepper>
-        </NumberInput>
-        <FormLabel>Extra chits</FormLabel>
-        <Switch id="email-alerts" />
-        <FormControl>
-          <FormLabel>Amount</FormLabel>
-          <Input type="Number" placeHolder="Enter the Amount" />
-        </FormControl>
-        <br />
-        <Button colorScheme="blue">Submit</Button>
+            marginLeft="350px"
+            colorScheme="blue"
+            textAlign="center"
+          >
+            AddChits
+          </Button>
+          <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>
+                <ModalCloseButton />
+              </ModalHeader>
+              <ModalBody>
+                <Text fontSize="3xl" textAlign="center">
+                  Chits Details
+                </Text>
+                <FormControl>
+                  <FormLabel>Name</FormLabel>
+                  <Input
+                    type="text"
+                    placeholder="Name"
+                    {...register("name")}
+                    className={`form-control ${
+                      errors.name ? "is-invalid" : ""
+                    }`}
+                    onChange={(e) => {
+                      setname(e.target.value);
+                    }}
+                  />
+                  <div className="invalid-feedback">{errors.name?.message}</div>
+                </FormControl>
+                <FormControl>
+                  <FormLabel>ChitType</FormLabel>
+                  <Select
+                    placeHolder="Select option"
+                    {...register("chittype")}
+                    className={`form-control ${
+                      errors.chittype ? "is-invalid" : ""
+                    }`}
+                    onChange={(e) => {
+                      setchittype(e.target.value);
+                    }}
+                  >
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                  </Select>
+                  <div className="invalid-feedback">
+                    {errors.chittype?.message}
+                  </div>
+                </FormControl>
+                <FormLabel>StartDate</FormLabel>
+                <Input
+                  placeHolder="Select Date and Time"
+                  size="md"
+                  backgroundColor="#ffffff"
+                  type="datetime-local"
+                  {...register("startdate")}
+                  className={`form-control ${
+                    errors.startdate ? "is-invalid" : ""
+                  }`}
+                  onChange={(e) => {
+                    setstartdate(e.target.value);
+                  }}
+                />
+                <FormLabel>No of Chits</FormLabel>
+                <NumberInput>
+                  <NumberInputField
+                    placeHolder="Number of Chits"
+                    {...register("noofchits")}
+                    className={`form-control ${
+                      errors.noofchits ? "is-invalid" : ""
+                    }`}
+                    onChange={(e) => {
+                      setnoofchits(e.target.value);
+                    }}
+                  />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                  <div className="invalid-feedback">
+                    {errors.noofchits?.message}
+                  </div>
+                </NumberInput>
+                <FormControl>
+                  <FormLabel>Occures in</FormLabel>
+                  <Input
+                    placeHolder="Select Date and Time"
+                    size="md"
+                    backgroundColor="#ffffff"
+                    type="datetime-local"
+                    {...register("occuresin")}
+                    className={`form-control ${
+                      errors.occuresin ? "is-invalid" : ""
+                    }`}
+                    onChange={(e) => {
+                      setoccuresin(e.target.value);
+                    }}
+                  />
+                  <div className="invalid-feedback">
+                    {errors.occuresin?.message}
+                  </div>
+                </FormControl>
+                <FormLabel>TotalAmount</FormLabel>
+                <NumberInput>
+                  <NumberInputField
+                    placeHolder="Number of TotalAmount"
+                    {...register("totalamount")}
+                    className={`form-control ${
+                      errors.totalamount ? "is-invalid" : ""
+                    }`}
+                    onChange={(e) => {
+                      settotalamount(e.target.value);
+                    }}
+                  />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                  <div className="invalid-feedback">
+                    {errors.totalamount?.message}
+                  </div>
+                </NumberInput>
+                <FormLabel>ExtraChit</FormLabel>
+                <Switch id="email-alerts" />
+                <FormControl>
+                  <FormLabel>Amount</FormLabel>
+                  <Input type="Number" placeHolder="Enter the Amount" />
+                </FormControl>
+              </ModalBody>
+              <ModalFooter>
+                <Button type="submit" colorScheme="blue">
+                  Submit
+                </Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+        </Flex>
       </Container>
-    </Flex>
+      <Text fontSize="3xl">Chits List</Text>
+      <Table>
+        <Thead>
+          <Tr>
+            <Th>Chit Name</Th>
+            <Th>Chit Type</Th>
+            <Th>Start Date</Th>
+            <Th>No of Chits</Th>
+            <Th>Occures In</Th>
+            <Th>Total Amount</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          <Tr>
+            <Td></Td>
+            <Td></Td>
+            <Td></Td>
+            <Td></Td>
+            <Td></Td>
+            <Td></Td>
+          </Tr>
+        </Tbody>
+      </Table>
+    </form>
   );
 }
 
