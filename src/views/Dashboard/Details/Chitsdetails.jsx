@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { db } from "../../../firebase";
-import { collection, addDoc, getDoc } from "firebase/firestore";
+// import { db } from "../../../firebase";
+// import { collection, addDoc, getDoc } from "firebase/firestore";
 import {
   FormControl,
   FormLabel,
@@ -32,7 +32,7 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
 } from "@chakra-ui/react";
-import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
+// import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 function Chit() {
   const validationSchema = Yup.object().shape({
     name: Yup.string().required(" Name is required"),
@@ -52,30 +52,34 @@ function Chit() {
     resolver: yupResolver(validationSchema),
   });
 
-  const [name, setname] = useState("");
-  const [chittype, setchittype] = useState("");
-  const [startdate, setstartdate] = useState("");
-  const [noofchits, setnoofchits] = useState("");
-  const [occcuresin, setoccuresin] = useState("");
-  const [totalamount, settotalamount] = useState("");
+  // const [name, setname] = useState("");
+  // const [chittype, setchittype] = useState("");
+  // const [startdate, setstartdate] = useState("");
+  // const [noofchits, setnoofchits] = useState("");
+  // const [occuresin, setoccuresin] = useState("");
+  // const [totalamount, settotalamount] = useState("");
 
-  const usersCollectionRef = collection(db, "chitsdatails");
+  // const usersCollectionRef = collection(db, "chitsdatails");
 
-  const onSubmit = async (data) => {
-    await addDoc(usersCollectionRef, {
-      name: name,
-      chittype: chittype,
-      startdate: startdate,
-      noofchits: noofchits,
-      occcuresin: occcuresin,
-      totalamount: totalamount,
-    });
-    console.log(JSON.stringify(data, null, 2));
-  };
+  // const onSubmit = async (data) => {
+  //   await addDoc(usersCollectionRef, {
+  //     name: name,
+  //     chittype: chittype,
+  //     startdate: startdate,
+  //     noofchits: noofchits,
+  //     occuresin: occuresin,
+  //     totalamount: totalamount,
+  //   });
+  //   console.log(JSON.stringify(data, null, 2));
+  // };
   const { isOpen, onClose, onOpen } = useDisclosure();
 
+  const onSubmit = (data) => {
+    console.log(JSON.stringify(data, null, 2));
+  };
+
   return (
-    <form onSubmit={handleSubmit(onsubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Container>
         <Flex direction="column" pt={{ base: "120px", md: "75px" }}>
           <Button
@@ -84,6 +88,7 @@ function Chit() {
             marginLeft="350px"
             colorScheme="blue"
             textAlign="center"
+            backgroundColor="Highlight"
           >
             AddChits
           </Button>
@@ -101,14 +106,11 @@ function Chit() {
                   <FormLabel>Name</FormLabel>
                   <Input
                     type="text"
-                    placeHolder="Name"
+                    placeHolder=" Enter the Name"
                     {...register("name")}
                     className={`form-control ${
                       errors.name ? "is-invalid" : ""
                     }`}
-                    onChange={(e) => {
-                      setname(e.target.value);
-                    }}
                   />
                   <div className="invalid-feedback">{errors.name?.message}</div>
                 </FormControl>
@@ -120,13 +122,14 @@ function Chit() {
                     className={`form-control ${
                       errors.chittype ? "is-invalid" : ""
                     }`}
-                    onChange={(e) => {
-                      setchittype(e.target.value);
-                    }}
+                    // onChange={(e) => {
+                    //   setchittype(e.target.value);
+                    // }}
                   >
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
+                    <option value="">--payment--</option>
+                    <option value="month">month</option>
+                    <option value="month 2">month 2</option>
+                    <option value="month 3">month 3</option>
                   </Select>
                   <div className="invalid-feedback">
                     {errors.chittype?.message}
@@ -142,9 +145,9 @@ function Chit() {
                   className={`form-control ${
                     errors.startdate ? "is-invalid" : ""
                   }`}
-                  onChange={(e) => {
-                    setstartdate(e.target.value);
-                  }}
+                  // onChange={(e) => {
+                  //   setstartdate(e.target.value);
+                  // }}
                 />
                 <FormLabel>No of Chits</FormLabel>
                 <NumberInput>
@@ -154,9 +157,9 @@ function Chit() {
                     className={`form-control ${
                       errors.noofchits ? "is-invalid" : ""
                     }`}
-                    onChange={(e) => {
-                      setnoofchits(e.target.value);
-                    }}
+                    // onChange={(e) => {
+                    //   setnoofchits(e.target.value);
+                    // }}
                   />
                   <NumberInputStepper>
                     <NumberIncrementStepper />
@@ -177,9 +180,9 @@ function Chit() {
                     className={`form-control ${
                       errors.occuresin ? "is-invalid" : ""
                     }`}
-                    onChange={(e) => {
-                      setoccuresin(e.target.value);
-                    }}
+                    // onChange={(e) => {
+                    //   setoccuresin(e.target.value);
+                    // }}
                   />
                   <div className="invalid-feedback">
                     {errors.occuresin?.message}
@@ -193,9 +196,9 @@ function Chit() {
                     className={`form-control ${
                       errors.totalamount ? "is-invalid" : ""
                     }`}
-                    onChange={(e) => {
-                      settotalamount(e.target.value);
-                    }}
+                    // onChange={(e) => {
+                    //   settotalamount(e.target.value);
+                    // }}
                   />
                   <NumberInputStepper>
                     <NumberIncrementStepper />
@@ -216,25 +219,25 @@ function Chit() {
                     className={`form-control ${
                       errors.amount ? "is-invalid" : ""
                     } `}
-                    onChange={(e) => {
-                      setamount(e.target.value);
-                    }}
+                    // onChange={(e) => {
+                    //   setamount(e.target.value);
+                    // }}
                   />
                   <div className="invalid-feedback">
                     {errors.amount?.message}
                   </div>
                 </FormControl>
-              </ModalBody>
-              <ModalFooter>
+                <br />
                 <Button type="submit" colorScheme="blue">
                   Submit
                 </Button>
-              </ModalFooter>
+              </ModalBody>
+              <ModalFooter></ModalFooter>
             </ModalContent>
           </Modal>
         </Flex>
       </Container>
-      <Text fontSize="3xl">Chits List</Text>
+      {/* <Text fontSize="3xl">Chits List</Text>
       <Table>
         <Thead>
           <Tr>
@@ -256,7 +259,7 @@ function Chit() {
             <Td></Td>
           </Tr>
         </Tbody>
-      </Table>
+      </Table> */}
     </form>
   );
 }

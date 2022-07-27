@@ -2,6 +2,7 @@ import Chit from "views/Dashboard/dashboard/ownerDetails";
 import SignUp from "views/Dashboard/chits/signUp";
 import Chitsdetails from "views/Dashboard/details/chitsdetails";
 import Member from "views/Dashboard/memberlist/member";
+import login from "views/Dashboard/login/login";
 
 import {
   HomeIcon,
@@ -14,6 +15,14 @@ import {
 } from "components/Icons/Icons";
 
 var dashRoutes = [
+  {
+    path: "/login",
+    name: "login",
+    rtlName: "لوحة القيادة",
+    icon: <RocketIcon color="inherit" />,
+    component: login,
+    layout: "/admin",
+  },
   {
     path: "/Chit",
     name: "Dashboard",

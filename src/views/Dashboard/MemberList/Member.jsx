@@ -101,9 +101,12 @@ function Member() {
               }}
             >
               <option value="">--payment--</option>
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
+              <option value="Googlepay">googlepay</option>
+              <option value="Phonepay">phonepay </option>
+              <option value="Cash">cash </option>
+              <option value="Bank">Bank</option>
+              <option value="Checque">Checque</option>
+              <option value="Demand draft">Demand draft</option>
             </Select>
             <div className="invalid-feedback">{errors.payment?.message}</div>
           </FormControl>
