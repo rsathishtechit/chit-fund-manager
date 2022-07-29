@@ -3,7 +3,7 @@ import SignUp from "views/Dashboard/chits/signUp";
 import Chitsdetails from "views/Dashboard/details/chitsdetails";
 import Member from "views/Dashboard/memberlist/member";
 import login from "views/Dashboard/login/login";
-
+import create from "views/Dashboard/login/create";
 import {
   HomeIcon,
   StatsIcon,
@@ -16,6 +16,14 @@ import {
 
 var dashRoutes = [
   {
+    path: "/create",
+    name: "New User",
+    rtlName: "لوحة القيادة",
+    icon: <RocketIcon color="inherit" />,
+    component: create,
+    layout: "/admin",
+  },
+  {
     path: "/login",
     name: "login",
     rtlName: "لوحة القيادة",
@@ -23,6 +31,7 @@ var dashRoutes = [
     component: login,
     layout: "/admin",
   },
+
   {
     path: "/Chit",
     name: "Dashboard",

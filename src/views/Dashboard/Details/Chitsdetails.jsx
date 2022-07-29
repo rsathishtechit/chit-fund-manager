@@ -32,7 +32,7 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
 } from "@chakra-ui/react";
-// import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 function Chit() {
   const validationSchema = Yup.object().shape({
     name: Yup.string().required(" Name is required"),
@@ -237,7 +237,7 @@ function Chit() {
           </Modal>
         </Flex>
       </Container>
-      {/* <Text fontSize="3xl">Chits List</Text>
+      <Text fontSize="3xl">Chits List</Text>
       <Table>
         <Thead>
           <Tr>
@@ -259,7 +259,7 @@ function Chit() {
             <Td></Td>
           </Tr>
         </Tbody>
-      </Table> */}
+      </Table>
     </form>
   );
 }
