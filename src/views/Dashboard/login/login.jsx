@@ -98,7 +98,7 @@ function login() {
               marginLeft="360px "
               onClick={onsubmit}
             >
-              SignUp
+              LogIn
             </Button>
             <br />
             <Link to="./create">Click me! Create user</Link>

@@ -116,7 +116,7 @@ function Create() {
               size="lg"
               marginLeft="320px"
             >
-              CreateUser
+              Register
             </Button>
             <br />
             <Link to="./login">
